@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DrakesCraft-Labs/DrakesCrates/master/banner.svg" width="100%" alt="DRAKES CRATES animated banner" />
+  <img src="https://raw.githubusercontent.com/SlimefunNewHorizons/DrakesCrates/master/banner.svg" width="100%" alt="DRAKES CRATES animated banner" />
 </p>
 
 # DrakesCrates
@@ -51,6 +51,6 @@ Gestionar cajas de premios con llaves fisicas, ruleta visual y edicion de probab
 
 ## 📄 License & Intellectual Property
 
-Copyright © 2026 [**JackStar6677-1**](https://github.com/JackStar6677-1) · [**DrakesCraft Labs**](https://github.com/DrakesCraft-Labs). All Rights Reserved.
+Copyright © 2026 [**JackStar6677-1**](https://github.com/JackStar6677-1) · [**DrakesCraft Labs**](https://github.com/SlimefunNewHorizons). All Rights Reserved.
 
 This software is **Source-Available** for public inspection and technical audit. Redistribution, commercial repackaging, or unauthorized derivative distribution without explicit written permission from the author is strictly prohibited.
