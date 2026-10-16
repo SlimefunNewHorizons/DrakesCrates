@@ -94,11 +94,11 @@ public final class ModalityManager {
     public Component getDeniedReason(Player player, Crate crate) {
         if (isClasico(player) && (crate.getModality() == CrateModality.SLIMEFUN || crate.hasSlimefunRewards())) {
             return MessageUtils.parse(
-                    "<red>✦ <b>[Modo Clásico - Restricción Vainilla]</b></red><newline>"
-                    + "<gray>Esta crate contiene recompensas de <light_purple>Slimefun</light_purple> y está prohibida en Clásico (100% Vainilla).<newline>"
-                    + "Para abrirla, viaja a Skyblock, Oneblock u otra modalidad con Slimefun activo.</gray>"
+                    "<red>✦ <b>[Classic Mode - Vanilla Restriction]</b></red><newline>"
+                    + "<gray>This crate contains <light_purple>Slimefun</light_purple> rewards and is forbidden in Classic (100% Vanilla).<newline>"
+                    + "To open it, travel to Skyblock, Oneblock, or another mode with Slimefun enabled.</gray>"
             );
         }
-        return MessageUtils.parse("<red>No puedes abrir esta crate en tu modalidad actual.</red>");
+        return MessageUtils.parse("<red>You cannot open this crate in your current mode.</red>");
     }
 }

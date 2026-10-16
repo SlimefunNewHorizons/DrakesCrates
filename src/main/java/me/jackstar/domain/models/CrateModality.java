@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public enum CrateModality {
     ALL("all", "<gray>[GLOBAL]</gray>", "Global"),
-    CLASICO("clasico", "<green>[100% VAINILLA]</green>", "Clásico (Vainilla)"),
+    CLASICO("clasico", "<green>[100% VANILLA]</green>", "Classic (Vanilla)"),
     SLIMEFUN("slimefun", "<light_purple>[SLIMEFUN & TECH]</light_purple>", "Slimefun & Tech");
 
     private final String id;

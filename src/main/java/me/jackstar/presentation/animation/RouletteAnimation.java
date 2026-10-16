@@ -61,7 +61,7 @@ public class RouletteAnimation implements CrateAnimation, Listener {
         }
 
         Inventory inventory = Bukkit.createInventory(null, INVENTORY_SIZE,
-                MessageUtils.parse("<gradient:gold:yellow><b>Abriendo:</b></gradient> " + safeId(crate.getId())));
+                MessageUtils.parse("<gradient:gold:yellow><b>Opening:</b></gradient> " + safeId(crate.getId())));
         setupFrame(inventory);
 
         Session session = new Session(playerId, inventory, crate, winReward);
@@ -143,7 +143,7 @@ public class RouletteAnimation implements CrateAnimation, Listener {
         ItemStack marker = new ItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE);
         ItemMeta meta = marker.getItemMeta();
         if (meta != null) {
-            meta.displayName(MessageUtils.parse("<aqua><b>PREMIO GANADOR</b></aqua>"));
+            meta.displayName(MessageUtils.parse("<aqua><b>WINNING REWARD</b></aqua>"));
             marker.setItemMeta(meta);
         }
         return marker;
@@ -187,7 +187,7 @@ public class RouletteAnimation implements CrateAnimation, Listener {
         if (leftovers.isEmpty()) return;
 
         leftovers.values().forEach(leftover -> player.getWorld().dropItemNaturally(player.getLocation(), leftover));
-        MessageUtils.send(player, "<yellow>Tu inventario estaba lleno, parte de la recompensa cayó a tus pies.</yellow>");
+        MessageUtils.send(player, "<yellow>Your inventory was full; part of the reward dropped at your feet.</yellow>");
     }
 
     private final class Session {
@@ -267,7 +267,7 @@ public class RouletteAnimation implements CrateAnimation, Listener {
             if (grantReward) {
                 try {
                     dispatchRewardCommands(player, winReward);
-                    MessageUtils.send(player, "<gold>✦ <b>¡Ganador!</b> Recompensa: <yellow>" + safeId(winReward.getId()) + "</yellow></gold>");
+                    MessageUtils.send(player, "<gold>✦ <b>Winner!</b> Reward: <yellow>" + safeId(winReward.getId()) + "</yellow></gold>");
                     player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 1.2F);
                 } catch (Exception ex) {
                     plugin.getLogger().log(Level.WARNING,

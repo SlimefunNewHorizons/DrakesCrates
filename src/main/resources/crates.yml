@@ -9,40 +9,40 @@
 
 keys:
   comun_key:
-    display-name: "<gradient:gold:yellow><b>Llave Común</b></gradient>"
+    display-name: "<gradient:gold:yellow><b>Common Key</b></gradient>"
     item:
       material: TRIPWIRE_HOOK
       amount: 1
-      name: "<yellow><b>Llave Común</b></yellow>"
+      name: "<yellow><b>Common Key</b></yellow>"
       lore:
-        - "<gray>Úsala para abrir la Crate Común."
-        - "<aqua>Compatible físicamente o virtualmente."
+        - "<gray>Use it to open the Common Crate."
+        - "<aqua>Works as a physical or virtual key."
       enchantments:
         unbreaking: 1
       custom-model-data: 1001
 
   clasico_key:
-    display-name: "<gradient:green:dark_green><b>Llave de Clásico</b></gradient>"
+    display-name: "<gradient:green:dark_green><b>Classic Key</b></gradient>"
     item:
       material: EMERALD
       amount: 1
-      name: "<green><b>Llave Vainilla Clásico</b></green>"
+      name: "<green><b>Classic Vanilla Key</b></green>"
       lore:
-        - "<gray>Llave exclusiva para el mundo Clásico."
-        - "<gray>100% compatible con el modo puro."
+        - "<gray>Exclusive key for the Classic world."
+        - "<gray>100% compatible with the pure mode."
       enchantments:
         unbreaking: 3
       custom-model-data: 1002
 
   sf_tech_key:
-    display-name: "<gradient:#9b59b6:#8e44ad><b>Llave Tecnológica Slimefun</b></gradient>"
+    display-name: "<gradient:#9b59b6:#8e44ad><b>Slimefun Technology Key</b></gradient>"
     item:
       material: AMETHYST_SHARD
       amount: 1
-      name: "<light_purple><b>Llave Tecnológica SF</b></light_purple>"
+      name: "<light_purple><b>Slimefun Tech Key</b></light_purple>"
       lore:
         - "<gray>Desbloquea maquinaria y componentes Slimefun."
-        - "<red>⚠ Prohibida en la modalidad Clásico."
+        - "<red>⚠ Forbidden in Classic mode."
       enchantments:
         unbreaking: 2
       custom-model-data: 1003
@@ -50,14 +50,14 @@ keys:
 crates:
   # Crate Global (Vainilla para todos los mundos)
   basic:
-    display-name: "<gradient:gold:yellow><b>Crate Común</b></gradient>"
+    display-name: "<gradient:gold:yellow><b>Common Crate</b></gradient>"
     modality: ALL
     type: PHYSICAL_KEY
     key-id: comun_key
     preview-item:
       material: CHEST
       amount: 1
-      name: "<gold><b>Crate Común</b></gold>"
+      name: "<gold><b>Common Crate</b></gold>"
       lore:
         - "<gray>Recompensas globales y esenciales."
         - "<green>[100% VAINILLA]</green>"
@@ -74,7 +74,7 @@ crates:
           amount: 8
           name: "<yellow>250 Monedas"
           lore:
-            - "<gray>Recompensa económica común."
+            - "<gray>Common economy reward."
       iron_pack:
         display-name: "<white>Pack de Hierro (16x)"
         chance: 35.0
@@ -96,7 +96,7 @@ crates:
 
   # Crate Exclusiva Clásico (100% Vainilla, minerales y tesoros tradicionales)
   clasico_tesoro:
-    display-name: "<gradient:green:dark_green><b>Crate del Explorador Clásico</b></gradient>"
+    display-name: "<gradient:green:dark_green><b>Classic Explorer Crate</b></gradient>"
     modality: CLASICO
     type: PHYSICAL_KEY
     key-id: clasico_key
@@ -105,7 +105,7 @@ crates:
       amount: 1
       name: "<green><b>Crate del Explorador</b></green>"
       lore:
-        - "<gray>Diseñada especialmente para Clásico."
+        - "<gray>Designed especially for Classic."
         - "<green>[100% VAINILLA]</green>"
     rewards:
       lingote_netherite:
@@ -136,14 +136,14 @@ crates:
           amount: 4
           name: "<aqua>4x Bloques de Diamante"
       totem:
-        display-name: "<yellow>Tótem de la Inmortalidad"
+        display-name: "<yellow>Totem of Undying"
         chance: 20.0
         vanilla: true
         amount: 1
         display-item:
           material: TOTEM_OF_UNDYING
           amount: 1
-          name: "<yellow>Tótem de la Inmortalidad"
+          name: "<yellow>Totem of Undying"
       dragmas_clasico:
         display-name: "<gold>Bolsa de 1,000 Dragmas"
         chance: 25.0
@@ -156,18 +156,18 @@ crates:
 
   # Crate Slimefun Tecnológica (¡BLOQUEADA ESTRICTAMENTE EN CLÁSICO!)
   sf_tecnologia:
-    display-name: "<gradient:#9b59b6:#8e44ad><b>Crate Tecnológica Slimefun</b></gradient>"
+    display-name: "<gradient:#9b59b6:#8e44ad><b>Slimefun Technology Crate</b></gradient>"
     modality: SLIMEFUN
     type: PHYSICAL_KEY
     key-id: sf_tech_key
     preview-item:
       material: DAYLIGHT_DETECTOR
       amount: 1
-      name: "<light_purple><b>Crate Tecnológica SF</b></light_purple>"
+      name: "<light_purple><b>Slimefun Tech Crate</b></light_purple>"
       lore:
         - "<gray>Componentes y paneles de Slimefun."
         - "<light_purple>[SLIMEFUN & TECH]</light_purple>"
-        - "<red>Bloqueada en el mundo Clásico.</red>"
+        - "<red>Blocked in the Classic world.</red>"
     rewards:
       panel_solar:
         display-name: "<gold>Panel Solar Slimefun"
@@ -179,7 +179,7 @@ crates:
           amount: 1
           name: "<gold>Panel Solar (Slimefun)"
           lore:
-            - "<gray>Generador de energía solar."
+            - "<gray>Solar energy generator."
       carbon_chunk:
         display-name: "<dark_gray>Trozo de Carbono (Carbon Chunk)"
         chance: 35.0
@@ -190,7 +190,7 @@ crates:
           amount: 4
           name: "<dark_gray>Carbon Chunk (SF)"
       electric_motor:
-        display-name: "<blue>Motor Eléctrico Slimefun"
+        display-name: "<blue>Slimefun Electric Motor"
         chance: 25.0
         slimefun-id: "ELECTRIC_MOTOR"
         amount: 2

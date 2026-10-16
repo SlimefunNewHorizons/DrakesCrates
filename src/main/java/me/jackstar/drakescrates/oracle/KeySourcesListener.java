@@ -98,8 +98,8 @@ public final class KeySourcesListener implements Listener {
         plugin.getLogger().info("[Oraculo] +" + amount + " llave(s) " + relicary + " a " + username + " por votar en " + servicio);
         Player online = target.getPlayer();
         if (online != null) {
-            online.sendMessage("§6[Oráculo] §a¡Gracias por votar en §e" + servicio + "§a! Recibiste §e" + amount
-                    + " §allave(s) del §e" + relicary + "§a. Ábrelo con §f/oraculo§a.");
+            online.sendMessage("§6[Oracle] §aThank you for voting on §e" + servicio + "§a! You received §e" + amount
+                    + " §akey(s) for §e" + relicary + "§a. Open it with §f/oraculo§a.");
         }
     }
 
@@ -127,6 +127,6 @@ public final class KeySourcesListener implements Listener {
             return;
         }
         plugin.getLogger().info("[Oraculo] +" + amount + " llave(s) " + relicary + " a " + killer.getName() + " por derrotar a " + plano);
-        killer.sendMessage("§6[Oráculo] §aEl jefe soltó §e" + amount + " §allave(s) del §e" + relicary + "§a. Ábrelo con §f/oraculo§a.");
+        killer.sendMessage("§6[Oracle] §aThe boss dropped §e" + amount + " §akey(s) for §e" + relicary + "§a. Open it with §f/oraculo§a.");
     }
 }

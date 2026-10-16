@@ -78,7 +78,7 @@ public class CrateListener implements Listener {
         }
 
         if (crateAnimation.isOpening(player)) {
-            MessageUtils.send(player, "<red>Ya estás abriendo una crate actualmente.</red>");
+            MessageUtils.send(player, "<red>You are already opening a crate.</red>");
             return;
         }
 
@@ -88,7 +88,7 @@ public class CrateListener implements Listener {
 
         if (crate.getType() != CrateType.FREE) {
             if (requiredKey.isEmpty()) {
-                MessageUtils.send(player, "<red>Esta crate tiene una configuración de llave inválida.</red>");
+                MessageUtils.send(player, "<red>This crate has an invalid key configuration.</red>");
                 return;
             }
 
@@ -99,7 +99,7 @@ public class CrateListener implements Listener {
                     usingVirtualKey = true;
                 } else {
                     player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 0.8f, 1.0f);
-                    MessageUtils.send(player, "<red>Necesitas una llave física o virtual para abrir esta crate.</red>");
+                    MessageUtils.send(player, "<red>You need a physical or virtual key to open this crate.</red>");
                     return;
                 }
             }
@@ -112,7 +112,7 @@ public class CrateListener implements Listener {
         }
 
         if (!crateAnimation.start(player, crate, result.getWinningReward())) {
-            MessageUtils.send(player, "<red>No se pudo abrir la crate. Tu llave no fue consumida.</red>");
+            MessageUtils.send(player, "<red>The crate could not be opened. Your key was not consumed.</red>");
             return;
         }
 

@@ -27,7 +27,7 @@ public class CratePreviewManager implements Listener {
         int size = Math.min(54, Math.max(27, ((rewards.size() + 8) / 9) * 9 + 18));
         PreviewHolder holder = new PreviewHolder();
         Inventory inv = Bukkit.createInventory(holder, size,
-                MessageUtils.parse("<gold><b>Vista Previa:</b></gold> " + crate.getId()));
+                MessageUtils.parse("<gold><b>Preview:</b></gold> " + crate.getId()));
 
         // Fill background borders
         ItemStack pane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).name("<dark_gray> ").build();
@@ -48,8 +48,8 @@ public class CratePreviewManager implements Listener {
 
         // Back button on bottom middle
         inv.setItem(size - 5, new ItemBuilder(Material.BARRIER)
-                .name("<red><b>Cerrar Vista Previa</b></red>")
-                .lore("<gray>Click para volver.</gray>")
+                .name("<red><b>Close Preview</b></red>")
+                .lore("<gray>Click to return.</gray>")
                 .build());
 
         int slot = 9;
@@ -61,16 +61,16 @@ public class CratePreviewManager implements Listener {
             lore.add("<gray>Probabilidad: <yellow><b>" + String.format("%.2f", r.getChance()) + "%</b></yellow>");
 
             if (r.isSlimefun()) {
-                lore.add("<light_purple><b>[SLIMEFUN]</b></light_purple> <gray>Ítem técnico/mágico</gray>");
+                lore.add("<light_purple><b>[SLIMEFUN]</b></light_purple> <gray>Technical/magic item</gray>");
                 if (player.getWorld().getName().toLowerCase().startsWith("clasico")) {
-                    lore.add("<red>⚠ Inhabilitado en Clásico (Vainilla)</red>");
+                    lore.add("<red>⚠ Disabled in Classic (Vanilla)</red>");
                 }
             } else if (r.isVanilla()) {
-                lore.add("<green><b>[VAINILLA]</b></green> <gray>Ítem tradicional seguro</gray>");
+                lore.add("<green><b>[VANILLA]</b></green> <gray>Safe traditional item</gray>");
             }
 
             if (!r.getCommands().isEmpty()) {
-                lore.add("<aqua><b>[COMANDO]</b></aqua> <gray>Ejecuta acciones adicionales</gray>");
+                lore.add("<aqua><b>[COMMAND]</b></aqua> <gray>Runs additional actions</gray>");
             }
 
             ItemStack icon = new ItemBuilder(display)

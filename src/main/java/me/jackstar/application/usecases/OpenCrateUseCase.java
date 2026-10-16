@@ -23,13 +23,13 @@ public class OpenCrateUseCase {
     public OpenResult execute(Player player, Crate crate, ItemStack keyItem) {
         // 1. Modality & Vanilla Guard Validation
         if (modalityManager != null && !modalityManager.canOpenCrate(player, crate)) {
-            return OpenResult.failure("Esta crate no está permitida en tu modalidad actual (Clásico es 100% vainilla).");
+            return OpenResult.failure("This crate is not allowed in your current mode (Classic is 100% vanilla).");
         }
 
         // 2. Validate Key if Physical
         if (crate.getType() == CrateType.PHYSICAL_KEY && keyItem != null) {
             if (keyItem.getAmount() < 1) {
-                return OpenResult.failure("¡Necesitas una llave para abrir esta crate!");
+                return OpenResult.failure("You need a key to open this crate!");
             }
         }
 
@@ -41,7 +41,7 @@ public class OpenCrateUseCase {
 
         // 4. Clásico failsafe: If player is in Clásico and reward is Slimefun, block delivery
         if (modalityManager != null && modalityManager.isClasico(player) && reward.isSlimefun()) {
-            return OpenResult.failure("¡Error de seguridad! No se pueden entregar recompensas de Slimefun en Clásico.");
+            return OpenResult.failure("Security error: Slimefun rewards cannot be delivered in Classic.");
         }
 
         // 5. Return Success

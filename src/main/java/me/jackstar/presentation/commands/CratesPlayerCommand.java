@@ -25,15 +25,15 @@ public class CratesPlayerCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
                              @NotNull String[] args) {
         if (!(sender instanceof Player player)) {
-            MessageUtils.send(sender, "<red>Solo jugadores pueden ejecutar este comando.</red>");
+            MessageUtils.send(sender, "<red>Only players can run this command.</red>");
             return true;
         }
 
         if (args.length > 0 && "balance".equalsIgnoreCase(args[0])) {
             Map<String, Integer> balances = virtualKeyRepository.getAllBalances(player.getUniqueId());
-            MessageUtils.send(player, "<gold>✦ <b>Tus Llaves Virtuales:</b></gold>");
+            MessageUtils.send(player, "<gold>✦ <b>Your Virtual Keys:</b></gold>");
             if (balances.isEmpty()) {
-                MessageUtils.send(player, "<gray>No tienes llaves virtuales en este momento.</gray>");
+                MessageUtils.send(player, "<gray>You do not have any virtual keys right now.</gray>");
             } else {
                 balances.forEach((id, bal) -> MessageUtils.send(player, "<gray>• <yellow>" + id + "</yellow>: <aqua>" + bal + "</aqua></gray>"));
             }
