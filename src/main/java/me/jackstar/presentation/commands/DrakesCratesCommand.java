@@ -45,7 +45,7 @@ public class DrakesCratesCommand implements CommandExecutor {
                     return true;
                 }
             }
-            MessageUtils.send(sender, "<red>No tienes permisos para usar este comando.</red>");
+            MessageUtils.send(sender, "<red>You do not have permission to use this command.</red>");
             return true;
         }
 
@@ -62,7 +62,7 @@ public class DrakesCratesCommand implements CommandExecutor {
 
         if ("menu".equals(sub)) {
             if (!(sender instanceof Player player)) {
-                MessageUtils.send(sender, "<red>Solo jugadores pueden abrir el menú.</red>");
+                MessageUtils.send(sender, "<red>Only players can open the menu.</red>");
                 return true;
             }
             if (virtualCrateMenu != null) virtualCrateMenu.openMenu(player);
@@ -75,7 +75,7 @@ public class DrakesCratesCommand implements CommandExecutor {
             } else {
                 crateRepository.reload();
             }
-            MessageUtils.send(sender, "<green>DrakesCrates recargado correctamente.</green>");
+            MessageUtils.send(sender, "<green>DrakesCrates reloaded successfully.</green>");
             return true;
         }
 
@@ -97,7 +97,7 @@ public class DrakesCratesCommand implements CommandExecutor {
 
         if ("editor".equals(sub)) {
             if (!(sender instanceof Player player)) {
-                MessageUtils.send(sender, "<red>Solo jugadores pueden abrir el editor.</red>");
+                MessageUtils.send(sender, "<red>Only players can open the editor.</red>");
                 return true;
             }
             crateEditorManager.openEditor(player, args.length > 1 ? args[1] : null);
@@ -110,20 +110,20 @@ public class DrakesCratesCommand implements CommandExecutor {
 
     private boolean handleGiveKey(CommandSender sender, String label, String[] args) {
         if (args.length < 4) {
-            MessageUtils.send(sender, "<red>Uso: /" + label + " givekey <jugador> <key_id> <cantidad> [fisica|virtual]</red>");
+            MessageUtils.send(sender, "<red>Usage: /" + label + " givekey <player> <key_id> <amount> [physical|virtual]</red>");
             return true;
         }
 
         Player target = Bukkit.getPlayerExact(args[1]);
         if (target == null || !target.isOnline()) {
-            MessageUtils.send(sender, "<red>Jugador no encontrado o desconectado.</red>");
+            MessageUtils.send(sender, "<red>Player not found or offline.</red>");
             return true;
         }
 
         String keyId = args[2].toLowerCase();
         Key key = crateRepository.findKeyById(keyId).orElse(null);
         if (key == null) {
-            MessageUtils.send(sender, "<red>ID de llave desconocido: <gray>" + keyId + "</gray></red>");
+            MessageUtils.send(sender, "<red>Unknown key ID: <gray>" + keyId + "</gray></red>");
             return true;
         }
 
@@ -131,11 +131,11 @@ public class DrakesCratesCommand implements CommandExecutor {
         try {
             amount = Integer.parseInt(args[3]);
         } catch (NumberFormatException ex) {
-            MessageUtils.send(sender, "<red>La cantidad debe ser un número entero válido.</red>");
+            MessageUtils.send(sender, "<red>Amount must be a valid whole number.</red>");
             return true;
         }
         if (amount < 1) {
-            MessageUtils.send(sender, "<red>La cantidad debe ser al menos 1.</red>");
+            MessageUtils.send(sender, "<red>Amount must be at least 1.</red>");
             return true;
         }
 
@@ -143,8 +143,8 @@ public class DrakesCratesCommand implements CommandExecutor {
 
         if (isVirtual) {
             virtualKeyRepository.addKeys(target.getUniqueId(), keyId, amount);
-            MessageUtils.send(sender, "<green>Entregadas <yellow>" + amount + "</yellow> llave(s) virtuales <gray>(" + keyId + ")</gray> a <aqua>" + target.getName() + "</aqua>.</green>");
-            MessageUtils.send(target, "<green>Has recibido <yellow>" + amount + "</yellow> llave(s) virtuales <gray>(" + keyId + ")</gray>.</green>");
+            MessageUtils.send(sender, "<green>Delivered <yellow>" + amount + "</yellow> virtual key(s) <gray>(" + keyId + ")</gray> to <aqua>" + target.getName() + "</aqua>.</green>");
+            MessageUtils.send(target, "<green>You received <yellow>" + amount + "</yellow> virtual key(s) <gray>(" + keyId + ")</gray>.</green>");
             return true;
         }
 
@@ -153,27 +153,27 @@ public class DrakesCratesCommand implements CommandExecutor {
         int left = giveStacked(target, keyItem, amount);
 
         int delivered = amount - left;
-        MessageUtils.send(sender, "<green>Entregadas <yellow>" + delivered + "</yellow> llave(s) físicas <gray>(" + keyId + ")</gray> a <aqua>" + target.getName() + "</aqua>.</green>");
+        MessageUtils.send(sender, "<green>Delivered <yellow>" + delivered + "</yellow> physical key(s) <gray>(" + keyId + ")</gray> to <aqua>" + target.getName() + "</aqua>.</green>");
 
         if (left > 0) {
-            MessageUtils.send(sender, "<red>" + left + " llave(s) no cupieron en el inventario y se añadieron como virtuales.</red>");
+            MessageUtils.send(sender, "<red>" + left + " key(s) did not fit in the inventory and were added as virtual keys.</red>");
             virtualKeyRepository.addKeys(target.getUniqueId(), keyId, left);
-            MessageUtils.send(target, "<yellow>" + left + " llave(s) fueron convertidas a virtuales porque tu inventario estaba lleno.</yellow>");
+            MessageUtils.send(target, "<yellow>" + left + " key(s) were converted to virtual keys because your inventory was full.</yellow>");
         } else {
-            MessageUtils.send(target, "<green>Has recibido <yellow>" + delivered + "</yellow> llave(s) físicas <gray>(" + keyId + ")</gray>.</green>");
+            MessageUtils.send(target, "<green>You received <yellow>" + delivered + "</yellow> physical key(s) <gray>(" + keyId + ")</gray>.</green>");
         }
         return true;
     }
 
     private boolean handleGiveVirtualKey(CommandSender sender, String label, String[] args) {
         if (args.length < 4) {
-            MessageUtils.send(sender, "<red>Uso: /" + label + " givevirtualkey <jugador> <key_id> <cantidad></red>");
+            MessageUtils.send(sender, "<red>Usage: /" + label + " givevirtualkey <player> <key_id> <amount></red>");
             return true;
         }
 
         Player target = Bukkit.getPlayerExact(args[1]);
         if (target == null || !target.isOnline()) {
-            MessageUtils.send(sender, "<red>Jugador no encontrado o desconectado.</red>");
+            MessageUtils.send(sender, "<red>Player not found or offline.</red>");
             return true;
         }
 
@@ -182,26 +182,26 @@ public class DrakesCratesCommand implements CommandExecutor {
         try {
             amount = Integer.parseInt(args[3]);
         } catch (NumberFormatException ex) {
-            MessageUtils.send(sender, "<red>Cantidad inválida.</red>");
+            MessageUtils.send(sender, "<red>Invalid amount.</red>");
             return true;
         }
         if (amount < 1) return true;
 
         virtualKeyRepository.addKeys(target.getUniqueId(), keyId, amount);
-        MessageUtils.send(sender, "<green>Añadidas <yellow>" + amount + "</yellow> llaves virtuales <gray>(" + keyId + ")</gray> a <aqua>" + target.getName() + "</aqua>.</green>");
-        MessageUtils.send(target, "<green>Has recibido <yellow>" + amount + "</yellow> llaves virtuales <gray>(" + keyId + ")</gray>.</green>");
+        MessageUtils.send(sender, "<green>Added <yellow>" + amount + "</yellow> virtual key(s) <gray>(" + keyId + ")</gray> to <aqua>" + target.getName() + "</aqua>.</green>");
+        MessageUtils.send(target, "<green>You received <yellow>" + amount + "</yellow> virtual key(s) <gray>(" + keyId + ")</gray>.</green>");
         return true;
     }
 
     private boolean handleTakeKey(CommandSender sender, String label, String[] args) {
         if (args.length < 4) {
-            MessageUtils.send(sender, "<red>Uso: /" + label + " takekey <jugador> <key_id> <cantidad></red>");
+            MessageUtils.send(sender, "<red>Usage: /" + label + " takekey <player> <key_id> <amount></red>");
             return true;
         }
 
         Player target = Bukkit.getPlayerExact(args[1]);
         if (target == null || !target.isOnline()) {
-            MessageUtils.send(sender, "<red>Jugador no encontrado.</red>");
+            MessageUtils.send(sender, "<red>Player not found.</red>");
             return true;
         }
 
@@ -209,9 +209,9 @@ public class DrakesCratesCommand implements CommandExecutor {
         int amount = Integer.parseInt(args[3]);
 
         if (virtualKeyRepository.takeKeys(target.getUniqueId(), keyId, amount)) {
-            MessageUtils.send(sender, "<green>Se retiraron <yellow>" + amount + "</yellow> llaves virtuales de " + target.getName() + ".</green>");
+            MessageUtils.send(sender, "<green>Removed <yellow>" + amount + "</yellow> virtual key(s) from " + target.getName() + ".</green>");
         } else {
-            MessageUtils.send(sender, "<red>El jugador no tiene suficientes llaves virtuales para retirar.</red>");
+            MessageUtils.send(sender, "<red>The player does not have enough virtual keys to remove.</red>");
         }
         return true;
     }
@@ -222,14 +222,14 @@ public class DrakesCratesCommand implements CommandExecutor {
             target = Bukkit.getPlayerExact(args[1]);
         }
         if (target == null) {
-            MessageUtils.send(sender, "<red>Especifica un jugador válido.</red>");
+            MessageUtils.send(sender, "<red>Specify a valid player.</red>");
             return true;
         }
 
         Map<String, Integer> balances = virtualKeyRepository.getAllBalances(target.getUniqueId());
-        MessageUtils.send(sender, "<gold>✦ <b>Llaves Virtuales de " + target.getName() + ":</b></gold>");
+        MessageUtils.send(sender, "<gold>✦ <b>Virtual Keys for " + target.getName() + ":</b></gold>");
         if (balances.isEmpty()) {
-            MessageUtils.send(sender, "<gray>No tiene llaves virtuales registradas.</gray>");
+            MessageUtils.send(sender, "<gray>No virtual keys are registered.</gray>");
         } else {
             balances.forEach((id, bal) -> MessageUtils.send(sender, "<gray>• <yellow>" + id + "</yellow>: <aqua>" + bal + "</aqua></gray>"));
         }
@@ -260,12 +260,12 @@ public class DrakesCratesCommand implements CommandExecutor {
     }
 
     private void sendUsage(CommandSender sender, String label) {
-        MessageUtils.send(sender, "<yellow><b>DrakesCrates Comandos:</b></yellow>");
-        MessageUtils.send(sender, "<gray>/" + label + " menu - Abre el menú de crates virtuales</gray>");
-        MessageUtils.send(sender, "<gray>/" + label + " givekey <jugador> <key_id> <cantidad> [fisica|virtual]</gray>");
-        MessageUtils.send(sender, "<gray>/" + label + " givevirtualkey <jugador> <key_id> <cantidad></gray>");
-        MessageUtils.send(sender, "<gray>/" + label + " takekey <jugador> <key_id> <cantidad></gray>");
-        MessageUtils.send(sender, "<gray>/" + label + " balance [jugador]</gray>");
+        MessageUtils.send(sender, "<yellow><b>DrakesCrates Commands:</b></yellow>");
+        MessageUtils.send(sender, "<gray>/" + label + " menu - Opens the virtual crates menu</gray>");
+        MessageUtils.send(sender, "<gray>/" + label + " givekey <player> <key_id> <amount> [physical|virtual]</gray>");
+        MessageUtils.send(sender, "<gray>/" + label + " givevirtualkey <player> <key_id> <amount></gray>");
+        MessageUtils.send(sender, "<gray>/" + label + " takekey <player> <key_id> <amount></gray>");
+        MessageUtils.send(sender, "<gray>/" + label + " balance [player]</gray>");
         MessageUtils.send(sender, "<gray>/" + label + " editor [crate_id]</gray>");
         MessageUtils.send(sender, "<gray>/" + label + " reload</gray>");
     }

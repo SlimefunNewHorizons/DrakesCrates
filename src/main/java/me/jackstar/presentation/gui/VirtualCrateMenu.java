@@ -71,7 +71,7 @@ public class VirtualCrateMenu implements Listener {
 
         VirtualMenuHolder holder = new VirtualMenuHolder(filter);
         Inventory inv = Bukkit.createInventory(holder, 54,
-                MessageUtils.parse("<gradient:#ffd700:#ff8c00><b>DrakesCrates - Menú Virtual</b></gradient>"));
+                MessageUtils.parse("<gradient:#ffd700:#ff8c00><b>DrakesCrates - Virtual Menu</b></gradient>"));
 
         // Frame
         ItemStack pane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).name("<dark_gray> ").build();
@@ -82,50 +82,50 @@ public class VirtualCrateMenu implements Listener {
         // Tab 1: Clásico (Vainilla)
         boolean isClasicoActive = filter == CrateModality.CLASICO;
         inv.setItem(2, new ItemBuilder(isClasicoActive ? Material.EMERALD : Material.GRASS_BLOCK)
-                .name("<green><b>🌱 Modo Clásico (100% Vainilla)</b></green>")
+                .name("<green><b>🌱 Classic Mode (100% Vanilla)</b></green>")
                 .lore(
-                        "<gray>Crates exclusivas y permitidas",
-                        "<gray>para el mundo Clásico.",
+                        "<gray>Exclusive crates allowed",
+                        "<gray>in the Classic world.",
                         "",
-                        isClasicoActive ? "<green>✔ Filtro Activo" : "<yellow>Click para filtrar"
+                        isClasicoActive ? "<green>✔ Active Filter" : "<yellow>Click to filter"
                 )
                 .build());
 
         // Tab 2: Todas
         boolean isAllActive = filter == CrateModality.ALL;
         inv.setItem(4, new ItemBuilder(isAllActive ? Material.NETHER_STAR : Material.ENDER_EYE)
-                .name("<gold><b>🌐 Todas las Crates</b></gold>")
+                .name("<gold><b>🌐 All Crates</b></gold>")
                 .lore(
-                        "<gray>Ver el catálogo completo",
-                        "<gray>de todas las modalidades.",
+                        "<gray>View the full catalog",
+                        "<gray>for every game mode.",
                         "",
-                        isAllActive ? "<green>✔ Filtro Activo" : "<yellow>Click para ver todas"
+                        isAllActive ? "<green>✔ Active Filter" : "<yellow>Click to view all"
                 )
                 .build());
 
         // Tab 3: Slimefun & Tech
         boolean isSfActive = filter == CrateModality.SLIMEFUN;
         inv.setItem(6, new ItemBuilder(isSfActive ? Material.AMETHYST_SHARD : Material.REDSTONE_BLOCK)
-                .name("<light_purple><b>⚡ Slimefun & Tecnología</b></light_purple>")
+                .name("<light_purple><b>⚡ Slimefun & Technology</b></light_purple>")
                 .lore(
-                        "<gray>Crates tecnológicas y mágicas",
-                        "<gray>con ítems avanzados de Slimefun.",
+                        "<gray>Technology and magic crates",
+                        "<gray>with advanced Slimefun items.",
                         "",
-                        isSfActive ? "<green>✔ Filtro Activo" : "<yellow>Click para filtrar"
+                        isSfActive ? "<green>✔ Active Filter" : "<yellow>Click to filter"
                 )
                 .build());
 
         // Info item on slot 8
         boolean inClasico = modalityManager.isClasico(player);
         inv.setItem(8, new ItemBuilder(inClasico ? Material.OAK_SAPLING : Material.BEACON)
-                .name("<yellow><b>Tu Modalidad Actual</b></yellow>")
+                .name("<yellow><b>Your Current Mode</b></yellow>")
                 .lore(
-                        inClasico ? "<green>Estás en: <b>Clásico (Vainilla)</b></green>"
-                                  : "<aqua>Estás en: <b>Slimefun / Tech</b></aqua>",
-                        "<gray>Mundo: <white>" + player.getWorld().getName() + "</white>",
+                        inClasico ? "<green>You are in: <b>Classic (Vanilla)</b></green>"
+                                  : "<aqua>You are in: <b>Slimefun / Tech</b></aqua>",
+                        "<gray>World: <white>" + player.getWorld().getName() + "</white>",
                         "",
-                        inClasico ? "<red>⚠ Slimefun restringido en este mundo.</red>"
-                                  : "<green>✔ Slimefun permitido en este mundo.</green>"
+                        inClasico ? "<red>⚠ Slimefun is restricted in this world.</red>"
+                                  : "<green>✔ Slimefun is allowed in this world.</green>"
                 )
                 .build());
 
@@ -158,8 +158,8 @@ public class VirtualCrateMenu implements Listener {
 
         // Close / Help button on 49
         inv.setItem(49, new ItemBuilder(Material.BARRIER)
-                .name("<red><b>Cerrar Menú</b></red>")
-                .lore("<gray>Click para salir.</gray>")
+                .name("<red><b>Close Menu</b></red>")
+                .lore("<gray>Click to exit.</gray>")
                 .build());
 
         player.openInventory(inv);
@@ -174,7 +174,7 @@ public class VirtualCrateMenu implements Listener {
         Optional<Key> reqKey = crateRepository.findRequiredKeyForCrate(crate.getId());
         int physicalKeys = 0;
         int virtualKeys = 0;
-        String keyName = "Gratis";
+        String keyName = "Free";
 
         if (reqKey.isPresent()) {
             keyName = reqKey.get().getId();
@@ -183,39 +183,39 @@ public class VirtualCrateMenu implements Listener {
         }
 
         List<String> lore = new ArrayList<>();
-        lore.add("<gray>Modalidad: " + crate.getModality().getDisplayName());
+        lore.add("<gray>Mode: " + crate.getModality().getDisplayName());
 
         if (crate.hasSlimefunRewards()) {
-            lore.add("<light_purple>⚡ Contiene ítems de Slimefun</light_purple>");
+            lore.add("<light_purple>⚡ Contains Slimefun items</light_purple>");
         } else {
-            lore.add("<green>🌱 100% Contenido Vainilla</green>");
+            lore.add("<green>🌱 100% Vanilla Content</green>");
         }
 
         lore.add("");
 
         if (!allowed) {
-            lore.add("<red><b>🔒 BLOQUEADA EN CLÁSICO</b></red>");
-            lore.add("<gray>No permitida en Clásico (100% Vainilla).</gray>");
-            lore.add("<gray>Viaja a Skyblock o Oneblock para abrir.</gray>");
+            lore.add("<red><b>🔒 LOCKED IN CLASSIC</b></red>");
+            lore.add("<gray>Not allowed in Classic (100% Vanilla).</gray>");
+            lore.add("<gray>Travel to Skyblock or Oneblock to open it.</gray>");
         } else {
-            lore.add("<green><b>✔ Disponible para abrir</b></green>");
+            lore.add("<green><b>✔ Available to open</b></green>");
         }
 
         lore.add("");
         if (crate.getType() != CrateType.FREE) {
-            lore.add("<gray>Llaves Físicas: <yellow>" + physicalKeys + "</yellow>");
-            lore.add("<gray>Llaves Virtuales: <aqua>" + virtualKeys + "</aqua>");
-            lore.add("<gray>Total Llaves: <gold><b>" + (physicalKeys + virtualKeys) + "</b></gold>");
+            lore.add("<gray>Physical Keys: <yellow>" + physicalKeys + "</yellow>");
+            lore.add("<gray>Virtual Keys: <aqua>" + virtualKeys + "</aqua>");
+            lore.add("<gray>Total Keys: <gold><b>" + (physicalKeys + virtualKeys) + "</b></gold>");
         } else {
-            lore.add("<green>¡Esta Crate es Gratuita!</green>");
+            lore.add("<green>This Crate is Free!</green>");
         }
 
         lore.add("");
         if (allowed) {
-            lore.add("<yellow>Click Izquierdo:</yellow> <white>Girar Ruleta (1x)</white>");
-            lore.add("<gold>Shift + Click:</gold> <white>Apertura Rápida Instantánea</white>");
+            lore.add("<yellow>Left Click:</yellow> <white>Spin Roulette (1x)</white>");
+            lore.add("<gold>Shift + Click:</gold> <white>Instant Quick Open</white>");
         }
-        lore.add("<aqua>Click Derecho:</aqua> <white>Previsualizar Recompensas</white>");
+        lore.add("<aqua>Right Click:</aqua> <white>Preview Rewards</white>");
 
         ItemBuilder builder = new ItemBuilder(base.getType())
                 .name(crate.getDisplayName())
@@ -280,7 +280,7 @@ public class VirtualCrateMenu implements Listener {
             }
 
             if (rouletteAnimation.isOpening(player)) {
-                MessageUtils.send(player, "<red>Ya estás abriendo una crate actualmente.</red>");
+                MessageUtils.send(player, "<red>You are already opening a crate.</red>");
                 return;
             }
 
@@ -297,7 +297,7 @@ public class VirtualCrateMenu implements Listener {
 
         if (crate.getType() != CrateType.FREE) {
             if (reqKey.isEmpty()) {
-                MessageUtils.send(player, "<red>Configuración de llave inválida para esta crate.</red>");
+                MessageUtils.send(player, "<red>Invalid key configuration for this crate.</red>");
                 return;
             }
 
@@ -310,7 +310,7 @@ public class VirtualCrateMenu implements Listener {
                 useVirtualKey = true;
             } else {
                 player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 0.8f, 1.0f);
-                MessageUtils.send(player, "<red>No tienes llaves suficientes para abrir esta crate (" + key.getId() + ").</red>");
+                MessageUtils.send(player, "<red>You do not have enough keys to open this crate (" + key.getId() + ").</red>");
                 return;
             }
         }
@@ -325,7 +325,7 @@ public class VirtualCrateMenu implements Listener {
         // Deduct Key Transactionally
         if (useVirtualKey) {
             if (!virtualKeyRepository.takeKeys(player.getUniqueId(), reqKey.get().getId(), 1)) {
-                MessageUtils.send(player, "<red>No se pudo debitar la llave virtual. Operación cancelada.</red>");
+                MessageUtils.send(player, "<red>The virtual key could not be deducted. Operation cancelled.</red>");
                 return;
             }
         } else if (physicalKey != null) {
@@ -339,7 +339,7 @@ public class VirtualCrateMenu implements Listener {
             player.closeInventory();
             player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0f, 1.2f);
             rouletteAnimation.grantReward(player, winReward);
-            MessageUtils.send(player, "<gold>✦ <b>¡Apertura Rápida!</b> Recompensa ganada: </gold>" + winReward.getId());
+            MessageUtils.send(player, "<gold>✦ <b>Quick Open!</b> Reward won: </gold>" + winReward.getId());
         } else {
             // Roulette Animation
             player.closeInventory();
@@ -350,7 +350,7 @@ public class VirtualCrateMenu implements Listener {
                 } else if (physicalKey != null) {
                     player.getInventory().addItem(reqKey.get().getItem());
                 }
-                MessageUtils.send(player, "<red>No se pudo iniciar la animación. Tu llave fue devuelta.</red>");
+                MessageUtils.send(player, "<red>The animation could not start. Your key was returned.</red>");
             }
         }
     }
