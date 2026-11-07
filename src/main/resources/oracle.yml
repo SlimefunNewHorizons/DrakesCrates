@@ -1,45 +1,61 @@
 # El Oraculo y Relicarios del Olimpo. Los comandos se ejecutan como consola; %player% se sustituye seguro al reclamar.
 relicaries:
   hercules:
-    name: "Lesser Relicary of Hercules"
-    key-name: "Herculean Essence"
+    name: "Relicario Menor de Hercules"
+    key-name: "Esencia Herculea"
     material: IRON_AXE
     rewards:
-      dragmas: { name: "Bag of Dragmas", rarity: COMMON, weight: 70, material: GOLD_NUGGET, commands: ["eco give %player% 250"] }
-      protector: { name: "Hercules Protection", rarity: RARE, weight: 25, material: SHIELD, commands: ["give %player% shield 1"] }
-      fuerza: { name: "Hero's Strength", rarity: LEGENDARY, weight: 5, material: DIAMOND_SWORD, commands: ["give %player% diamond_sword 1"] }
-  hestia:
-    name: "Sacred Relicary of Hestia"
-    key-name: "Sacred Flame"
-    material: CAMPFIRE
+      dragmas: { name: "Bolsa de Dragmas", rarity: COMUN, weight: 70, material: GOLD_NUGGET, commands: ["eco give %player% 250"] }
+      protector: { name: "Proteccion de Hercules", rarity: RARO, weight: 25, material: SHIELD, commands: ["give %player% shield 1"] }
+      fuerza: { name: "Fuerza del Heroe", rarity: LEGENDARIO, weight: 5, material: DIAMOND_SWORD, commands: ["give %player% diamond_sword 1"] }
+  atenea:
+    name: "Relicario Sagrado de Atenea"
+    key-name: "Sabiduria de Atenea"
+    material: ENCHANTED_BOOK
     rewards:
-      recursos: { name: "Sacred Resources", rarity: COMMON, weight: 70, material: IRON_INGOT, commands: ["give %player% iron_ingot 16"] }
-      cheque: { name: "Dragmas Cheque", rarity: RARE, weight: 25, material: GOLD_INGOT, commands: ["eco give %player% 1500"] }
-      brasa: { name: "Eternal Ember", rarity: LEGENDARY, weight: 5, material: BLAZE_ROD, commands: ["give %player% blaze_rod 16"] }
+      gemas: { name: "Gemas y Dragmas de Atenea", rarity: COMUN, weight: 65, material: LAPIS_LAZULI, commands: ["give %player% lapis_lazuli 32", "eco give %player% 750"] }
+      componentes: { name: "Cristales de Sabiduria", rarity: RARO, weight: 25, material: AMETHYST_SHARD, commands: ["give %player% amethyst_shard 16", "give %player% diamond 4"] }
+      armadura: { name: "Pechera Bendecida de Atenea", rarity: LEGENDARIO, weight: 10, material: DIAMOND_CHESTPLATE, commands: ["give %player% diamond_chestplate 1"] }
   hermes:
-    name: "Winged Relicary of Hermes"
-    key-name: "Celestial Feather"
+    name: "Relicario Alado de Hermes"
+    key-name: "Pluma Celestial"
     material: FEATHER
     rewards:
-      plumas: { name: "Celestial Feathers", rarity: COMMON, weight: 70, material: FEATHER, commands: ["give %player% feather 32"] }
-      descuento: { name: "Hermes Coupon", rarity: RARE, weight: 25, material: EMERALD, commands: ["eco give %player% 1000"] }
-      vuelo: { name: "Favor of Hermes", rarity: LEGENDARY, weight: 5, material: ELYTRA, commands: ["give %player% elytra 1"] }
-  hefesto:
-    name: "Hephaestus Forge Relicary"
-    key-name: "Vulcan Ingot"
-    material: ANVIL
+      plumas: { name: "Plumas Celestiales", rarity: COMUN, weight: 70, material: FEATHER, commands: ["give %player% feather 32"] }
+      descuento: { name: "Cupon de Hermes", rarity: RARO, weight: 25, material: EMERALD, commands: ["eco give %player% 1000"] }
+      vuelo: { name: "Favor de Hermes", rarity: LEGENDARIO, weight: 5, material: ELYTRA, commands: ["give %player% elytra 1"] }
+  zeus:
+    name: "Relicario Supremo de Zeus"
+    key-name: "Rayo del Olimpo"
+    material: NETHER_STAR
     rewards:
-      lingotes: { name: "Forge Ingots", rarity: COMMON, weight: 70, material: IRON_INGOT, commands: ["give %player% iron_ingot 32"] }
-      diamantes: { name: "Forge Core", rarity: RARE, weight: 25, material: DIAMOND, commands: ["give %player% diamond 8"] }
-      pico: { name: "Hephaestus Pickaxe", rarity: LEGENDARY, weight: 5, material: NETHERITE_PICKAXE, commands: ["give %player% netherite_pickaxe 1"] }
+      tesoro: { name: "Cofre Dorado de Dragmas", rarity: COMUN, weight: 60, material: GOLD_BLOCK, commands: ["eco give %player% 5000"] }
+      totem: { name: "Totem Divino del Olimpo", rarity: EPICO, weight: 30, material: TOTEM_OF_UNDYING, commands: ["give %player% totem_of_undying 2"] }
+      netherita: { name: "Armamento Mitico de Zeus", rarity: DIVINO, weight: 10, material: NETHERITE_CHESTPLATE, commands: ["give %player% netherite_chestplate 1"] }
   titanes:
-    name: "Supreme Relicary of the Titans"
-    key-name: "Tear of Chaos"
+    name: "Relicario Supremo de los Titanes"
+    key-name: "Lagrima del Caos"
     material: DRAGON_EGG
     rewards:
-      caos: { name: "Chaos Fragment", rarity: COMMON, weight: 65, material: AMETHYST_SHARD, commands: ["give %player% amethyst_shard 16"] }
-      aura: { name: "Titan Aura", rarity: EPIC, weight: 30, material: ECHO_SHARD, commands: ["give %player% echo_shard 8"] }
-      corona: { name: "Crown of the Titans", rarity: DIVINE, weight: 5, material: NETHER_STAR, commands: ["give %player% nether_star 1"] }
+      caos: { name: "Fragmento del Caos", rarity: COMUN, weight: 65, material: AMETHYST_SHARD, commands: ["give %player% amethyst_shard 16"] }
+      aura: { name: "Aura Titan", rarity: EPICO, weight: 30, material: ECHO_SHARD, commands: ["give %player% echo_shard 8"] }
+      corona: { name: "Corona de los Titanes", rarity: DIVINO, weight: 5, material: NETHER_STAR, commands: ["give %player% nether_star 1"] }
+  hestia:
+    name: "Relicario Sacro de Hestia"
+    key-name: "Llama Sagrada"
+    material: CAMPFIRE
+    rewards:
+      recursos: { name: "Recursos Sagrados", rarity: COMUN, weight: 70, material: IRON_INGOT, commands: ["give %player% iron_ingot 16"] }
+      cheque: { name: "Cheque de Dragmas", rarity: RARO, weight: 25, material: GOLD_INGOT, commands: ["eco give %player% 1500"] }
+      brasa: { name: "Brasa Eterna", rarity: LEGENDARIO, weight: 5, material: BLAZE_ROD, commands: ["give %player% blaze_rod 16"] }
+  hefesto:
+    name: "Relicario de la Forja de Hefesto"
+    key-name: "Lingote de Vulcano"
+    material: ANVIL
+    rewards:
+      lingotes: { name: "Lingotes de la Forja", rarity: COMUN, weight: 70, material: IRON_INGOT, commands: ["give %player% iron_ingot 32"] }
+      diamantes: { name: "Nucleo de Forja", rarity: RARO, weight: 25, material: DIAMOND, commands: ["give %player% diamond 8"] }
+      pico: { name: "Pico de Hefesto", rarity: LEGENDARIO, weight: 5, material: NETHERITE_PICKAXE, commands: ["give %player% netherite_pickaxe 1"] }
 
 # De donde salen las llaves (ademas de /oraculo givekey y la tienda).
 key-sources:
@@ -49,8 +65,7 @@ key-sources:
     keys: 1
   bosses:
     enabled: true
-    # entidades cuyo nombre visible contiene alguna de estas palabras (jefes de DrakesBosses/MultiverseCreatures)
-    name-contains: [jefe, boss, titan, "titán", hidra, minotauro, cerbero, kraken, dragon, "dragón", wither]
+    name-contains: [jefe, boss, titan, "titÃ¡n", hidra, minotauro, cerbero, kraken, dragon, "dragÃ³n", wither]
     chance: 1.0
     relicary: hefesto
     keys: 1
