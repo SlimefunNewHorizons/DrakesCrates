@@ -111,16 +111,25 @@ public class CrateListener implements Listener {
             return;
         }
 
-        if (!crateAnimation.start(player, crate, result.getWinningReward())) {
-            MessageUtils.send(player, "<red>No se pudo abrir la crate. Tu llave no fue consumida.</red>");
-            return;
-        }
-
-        // Consume key
+        // Deduct key BEFORE starting animation to prevent free opens on concurrent/failed deduction
         if (usingVirtualKey && requiredKey.isPresent()) {
-            virtualKeyRepository.takeKeys(player.getUniqueId(), requiredKey.get().getId(), 1);
+            if (!virtualKeyRepository.takeKeys(player.getUniqueId(), requiredKey.get().getId(), 1)) {
+                MessageUtils.send(player, "<red>No se pudo debitar la llave virtual. Operación cancelada.</red>");
+                return;
+            }
         } else if (keyForValidation != null) {
             consumeOneKey(keyForValidation);
+        }
+
+        if (!crateAnimation.start(player, crate, result.getWinningReward())) {
+            // Refund key if animation failed to start
+            if (usingVirtualKey && requiredKey.isPresent()) {
+                virtualKeyRepository.addKeys(player.getUniqueId(), requiredKey.get().getId(), 1);
+            } else if (keyForValidation != null && requiredKey.isPresent()) {
+                player.getInventory().addItem(requiredKey.get().getItem());
+            }
+            MessageUtils.send(player, "<red>No se pudo abrir la crate. Tu llave fue devuelta.</red>");
+            return;
         }
     }
 

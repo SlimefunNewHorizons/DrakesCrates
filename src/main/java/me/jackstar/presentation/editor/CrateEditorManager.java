@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -47,9 +48,16 @@ public class CrateEditorManager implements Listener {
         openCrateSelector(player);
     }
 
+    static int computeChestSize(int itemCount) {
+        if (itemCount <= 0) {
+            return 9;
+        }
+        return Math.min(54, Math.max(9, ((itemCount - 1) / 9 + 1) * 9));
+    }
+
     private void openCrateSelector(Player player) {
         List<Crate> crates = new ArrayList<>(crateRepository.getAllCrates());
-        int size = Math.max(9, ((crates.size() - 1) / 9 + 1) * 9);
+        int size = computeChestSize(crates.size());
         Inventory inventory = Bukkit.createInventory(new CrateSelectorHolder(), size, MessageUtils.parse("<gold>Crates Editor</gold>"));
 
         for (int i = 0; i < crates.size() && i < size; i++) {
@@ -71,7 +79,7 @@ public class CrateEditorManager implements Listener {
 
     private void openRewardEditor(Player player, Crate crate) {
         List<Reward> rewards = crate.getRewards();
-        int size = Math.max(9, ((rewards.size() - 1) / 9 + 1) * 9);
+        int size = computeChestSize(rewards.size());
         Inventory inventory = Bukkit.createInventory(
                 new RewardEditorHolder(normalize(crate.getId())),
                 size,
@@ -115,6 +123,9 @@ public class CrateEditorManager implements Listener {
             return;
         }
         event.setCancelled(true);
+        if (event.getRawSlot() < 0 || event.getRawSlot() >= event.getView().getTopInventory().getSize()) {
+            return;
+        }
 
         if (holder instanceof CrateSelectorHolder) {
             ItemStack clicked = event.getCurrentItem();
@@ -185,6 +196,14 @@ public class CrateEditorManager implements Listener {
             }
             openRewardEditor(player, refreshed);
         });
+    }
+
+    @EventHandler
+    public void onInventoryDrag(InventoryDragEvent event) {
+        InventoryHolder holder = event.getView().getTopInventory().getHolder();
+        if (holder instanceof CrateSelectorHolder || holder instanceof RewardEditorHolder) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
