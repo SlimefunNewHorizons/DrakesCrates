@@ -1,51 +1,58 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SlimefunNewHorizons/DrakesCrates/master/banner.svg" width="100%" alt="DRAKES CRATES animated banner" />
+  <img src="https://raw.githubusercontent.com/SlimefunNewHorizons/DrakesCrates/main/banner.svg" width="100%" alt="DRAKES CRATES animated banner" />
 </p>
 
 # DrakesCrates
 
-> ### 🏰 ¡Únete a la Comunidad Oficial de DrakesCraft!
-> 
-> * 🎮 **IP del Servidor**: `mc.drakescraft.cl` *(Java 1.21.11 & Bedrock)*
-> * 💬 **Discord Oficial**: [discord.gg/drakescraft](https://discord.gg/rv3vtXZTk7)
-> * 🌐 **Web & Guía**: [web.drakescraft.cl](https://web.drakescraft.cl) — 🛒 **Tienda**: [web.drakescraft.cl/store](https://web.drakescraft.cl/store.html)
-> 
-> *¡Juega con este addon y más de 80 expansiones optimizadas en vivo en nuestra network de supervivencia técnica!*
+> ### 🏰 Comunidad Oficial de DrakesCraft
+>
+> * 🎮 **IP del Servidor**: `mc.drakescraft.cl` *(Java & Bedrock)*
+> * 💬 **Discord Oficial**: [discord.gg/rv3vtXZTk7](https://discord.gg/rv3vtXZTk7)
+> * 🌐 **Portal Web & Guía**: [web.drakescraft.cl](https://web.drakescraft.cl)
+> * 🛒 **Tienda Oficial**: [drakescraft-v2.tebex.io](https://drakescraft-v2.tebex.io)
 
 ---
 
-Plugin de crates extraido desde el modulo `drakescrates` del antiguo `DrakesCore`.
+Plugin de cajas de premios virtuales y físicas de DrakesCraft, con soporte para ítems de Slimefun, protección de modalidad **Clásico (Vanilla)**, ruleta visual animada y editor GUI de probabilidades sin editar YAML manualmente.
 
-## Objetivo
-Gestionar cajas de premios con llaves fisicas, ruleta visual y edicion de probabilidades sin tocar YAML manualmente.
+## Funcionalidades
 
-## Que hace hoy
-- Comando admin: `/drakescrates givekey|editor|reload`.
-- Apertura de crates por bloque registrado en `crates.yml`.
-- Animacion tipo ruleta antes de entregar premio.
-- Editor GUI para ajustar `chance` por reward.
-- Preview pasivo al click izquierdo en el bloque de crate.
-- PlaceholderAPI: `%drakescrates_keys_physical%`.
-- PlaceholderAPI por llave: `%drakescrates_keys_<key_id>%` (ej: `%drakescrates_keys_basic_key%`).
-- Recarga runtime de `crates.yml` y `crates-settings.yml` con `/drakescrates reload`.
+- **Comando administrativo:** `/drakescrates givekey|editor|reload`.
+- **Apertura de crates:** por bloque registrado en `crates.yml` con llaves físicas o virtuales.
+- **Ruleta animada:** animación visual previa a la entrega del premio.
+- **Editor GUI:** ajuste en vivo de `chance` por recompensa.
+- **Preview pasivo:** clic izquierdo en el bloque de la crate para previsualizar recompensas y probabilidades.
+- **Protección Clásico (Vanilla):** impide entregar ítems de Slimefun en mundos vanilla.
+- **PlaceholderAPI:** `%drakescrates_keys_physical%` y `%drakescrates_keys_<key_id>%` (ej. `%drakescrates_keys_basic_key%`).
+- **Recarga en caliente:** `/drakescrates reload` recarga `crates.yml` y `crates-settings.yml`.
 
-## Architecture heredada del Core
-- `application/`: casos de uso y repositorio.
-- `domain/`: `Crate`, `Reward`, `Key`, `OpenResult`.
+## Arquitectura
+
+- `application/`: casos de uso y repositorios.
+- `domain/`: modelos `Crate`, `Reward`, `Key`, `OpenResult`.
 - `infrastructure/`: parser YAML y settings.
-- `presentation/`: comandos, listeners, editor, animacion.
+- `presentation/`: comandos, listeners, editor GUI y animación.
 
-## Configuracion
+## Configuración
+
 - `src/main/resources/crates.yml`
 - `src/main/resources/crates-settings.yml`
 
-## Dependencias
-- Paper 1.20.6
-- Java 21
-- PlaceholderAPI (opcional)
+## Compatibilidad
 
-## Pendiente real
-- Reportes/export de configuracion para auditoria de economia.
+| Componente | Requisito |
+| :--- | :--- |
+| **Servidor** | **Purpur 26.2** (Temporada 2) / Paper **1.21.x** |
+| **Java** | Compilado con **JDK 21** (compatible con **Java 21 y Java 25**) |
+| **Dependencias opcionales** | PlaceholderAPI, Votifier / VotifierPlus, Slimefun4-Drake |
+
+## Compilación
+
+Requisitos: **JDK 21+** y **Maven 3.9+**.
+
+```bash
+mvn clean package
+```
 
 ---
 
